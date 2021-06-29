@@ -1,16 +1,15 @@
-export default function Form() {
-    const registerUser = (e) => {
-        e.preventDefault()
-    
-        // const res = fetch('/api/location', {
-        //     method: 'POST',
-        //     headers: {
-        //       'Content-Type': 'application/json',
-        //     },
-        //     body: JSON.stringify(e.body),
-        //   })
-    
+export default function Form({action}) {
+    const registerUser = e => {
+        e.preventDefault();
+        const result = {
+          'location': e.target.location.value ,
+          'mincus': e.target.min.value ,
+          'maxcus': e.target.max.value ,
+          'avgcookies': e.target.avg.value
+        }
+    action(result)
       }
+
     
       return (
         <div className="m-10 text-center bg-green-300 border gray-700">
