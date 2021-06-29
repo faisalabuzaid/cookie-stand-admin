@@ -1,22 +1,18 @@
 import { useState } from "react";
-import Form from "./form";
+import Form from "../components/Form";
+import Table from "../components/Table";
+import Footer from "../components/Footer";
 
 export default function Home({ children }) {
-  const [data, setData] = useState({});
-  const result = JSON.stringify(data)
 
+  const [oneStand, setOneStand] = useState([]);
+  console.log(oneStand)
  
   return (
     <div>
-      <Form action={setData} />
-      <div className="text-center text-gray-700">
-        <p>Report table coming soon..</p>
-        <p>{Object.keys(data).length !== 0 && result}</p>
-      </div>
-
-      <footer className="absolute bottom-0 w-full px-8 py-4 bg-green-500">
-        <p>&copy;2021</p>
-      </footer>
+      <Form action={[oneStand, setOneStand]} />
+      <Table action={oneStand}/>
+      <Footer action={oneStand}/>
     </div>
   )
 }

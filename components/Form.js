@@ -1,13 +1,17 @@
 export default function Form({action}) {
     const registerUser = e => {
         e.preventDefault();
-        const result = {
+        const result = 
+          {
           'location': e.target.location.value ,
           'mincus': e.target.min.value ,
           'maxcus': e.target.max.value ,
-          'avgcookies': e.target.avg.value
+          'avgcookies': e.target.avg.value,
+          'hourly_sales': [48, 42, 30, 24, 42, 24, 36, 42, 42, 48, 36, 42, 24, 36]
         }
-    action(result)
+      
+    action[1]([...action[0], result]);
+    e.target.reset();
       }
 
     
