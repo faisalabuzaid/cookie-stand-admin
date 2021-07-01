@@ -6,8 +6,8 @@ import data from '../pages/data';
 
 
 export default function Home({ children }) {
-  const [totalPerHour, setTotalPerHour] = useState(516);
-  const [cookieStands, setCookieStands] = useState(data)
+  const [totalPerHour, setTotalPerHour] = useState(0);
+  const [cookieStands, setCookieStands] = useState([])
  
   return (
     <div>
