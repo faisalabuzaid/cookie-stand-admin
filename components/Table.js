@@ -1,11 +1,8 @@
-import { hourly_sales } from '../pages/data';
-
-export default function Table({ action }) {
-    const total = (test) => {
-        let result = 0
-        result = result+parseInt(test)
-        return result
-    }
+import { useState } from 'react';
+import hourly_sales from '../pages/data.json'
+export default function Table({ stands }) {
+    
+    console.log()
 
     return (
         <div className="text-center text-gray-700">
@@ -32,13 +29,13 @@ export default function Table({ action }) {
                 </thead>
                 <tbody>
 
-                    {action.map((h) =>
-                        <tr key={action.length}>
-                            <td> {h.location} </td>
-                            {hourly_sales.map((h) =>
-                                <td key={hourly_sales.length}> {hourly_sales[Math.floor(Math.random() * hourly_sales.length)]} </td>
+                    {stands[0].map(cookiStand =>
+                        <tr key={cookiStand.location}>
+                            <td> {cookiStand.location} </td>
+                            {cookiStand.hourly_sales.map((value,i) =>
+                                <td key={'value'+i}> {value} </td>
                             )}
-                            <td>{total(hourly_sales)}</td>
+                            <td>{cookiStand.hourly_sales.reduce((a, b) => a+b)}</td>
                         </tr>
                )}
 
@@ -46,10 +43,14 @@ export default function Table({ action }) {
                 <tfoot>
                     <tr>
                         <td>Totals</td>
-                        {hourly_sales.map(a =>
-                            <td key={hourly_sales.length}>{a}</td>
-                            )}
-                        <td>517</td>
+                                {hourly_sales[0].hourly_sales.map((_,i) => {
+
+                                    const amt = stands[0].reduce((acc, cur) => acc + cur.hourly_sales[i], 0);
+                                    return(<td key={i+stands[0].length}>{amt}</td>)
+                                }
+
+                                )}
+                        <td>{stands[1]}</td>
                     </tr>
                 </tfoot>
             </table>
@@ -57,4 +58,3 @@ export default function Table({ action }) {
         </div>
     )
 }
-

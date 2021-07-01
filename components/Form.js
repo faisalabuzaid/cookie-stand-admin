@@ -1,15 +1,32 @@
+
+
 export default function Form({action}) {
+
+  function getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1) + min);
+  }
+  
+  const calculatePerHour = function (min, max, avg){
+    let hourly_sales = []
+    let totalPerHour = 0
+    for (let i = 0; i < 14; i++) {
+      let totalCookiePerHour = Math.floor(getRandomInt(min, max) * avg);
+      hourly_sales.push(totalCookiePerHour)
+    }
+    action[2](action[3] + hourly_sales.reduce((a, b) => a+b))
+    return hourly_sales
+  }
+
+
     const registerUser = e => {
         e.preventDefault();
         const result = 
           {
           'location': e.target.location.value ,
-          'mincus': e.target.min.value ,
-          'maxcus': e.target.max.value ,
-          'avgcookies': e.target.avg.value,
-          'hourly_sales': [48, 42, 30, 24, 42, 24, 36, 42, 42, 48, 36, 42, 24, 36]
+          'hourly_sales': calculatePerHour(e.target.min.value,e.target.max.value,e.target.avg.value),
         }
-      
     action[1]([...action[0], result]);
     e.target.reset();
       }
