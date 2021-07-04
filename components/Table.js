@@ -57,7 +57,10 @@ export default function Table({ stands }) {
             </div>
         )
     } else {
-        return('No Data Available')
+        return(
+            <div className='flex flex-col content-center'>
+                <h3 className="text-xl text-center">No Data Available</h3>
+            </div>)
     }
     
 }
