@@ -1,7 +1,8 @@
 import { useState } from "react";
-import Form from "./form";
+import Form from "../components/Form"
 import LoginForm from "../components/Login-form";
 import axios from 'axios'
+import Table from "../components/Table";
 
 export default function Home({ children }) {
   const [data, setData] = useState({});
@@ -22,10 +23,9 @@ export default function Home({ children }) {
   }
   return (
     <div>
-      {isLoggedIn ? <><Form action={setData} />
+      {isLoggedIn ? <><Form action={[data, setData]} />
         <div className="text-center text-gray-700">
-          <p>Report table coming soon..</p>
-          <p>{Object.keys(data).length !== 0 && result}</p>
+          <Table stands={[data]}/>
         </div>
       </>
         :
